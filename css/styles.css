@@ -3,13 +3,14 @@ body {
     background-color: whitesmoke;
     display: flex;
     flex-direction: row;
-    max-width: 370px;
+    min-width: 370px;
+    max-width: 100%;
     margin: auto;
     color: #65578f;
     font-family: "Comic Sans MS", cursive;
 }
 
-form {
+main {
     margin: 3rem;
     padding: 2rem;
     background: #eec8c2;
@@ -18,7 +19,7 @@ form {
 }
 
 label {
-    margin: 1rem 0;
+    margin: .5rem 0;
     padding-top: 1rem;
 }
 

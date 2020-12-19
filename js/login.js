@@ -16,18 +16,19 @@ const today = new Date();
 const todayDate = document.getElementById("todayDate");
 todayDate.innerHTML = `${today.toDateString()}`;
 
-
-function time() {
-    var refresh = location.reload(1000); // refresh every second
+/** Reference NOTE: to get the time displaying moving seconds without reloading the entire page every second I found this and formatted it
+ https://www.plus2net.com/javascript_tutorial/clock-toggle.php 
+ */
+function currentTime() {
+    var refresh = 1000; // refresh every second
     time = setTimeout('displayTime()', refresh)
 };
 
 function displayTime() {
-    document.getElementById("todayTime").innerHTML = today.toLocaleTimeString('en-US');
+    const today = new Date().toLocaleTimeString('en-US');
+    document.getElementById("todayTime").innerHTML = today;
+    const displaySeconds = currentTime();
 }
-
-displayTime(); // calling function stopped the time from flashing every second
-
 
 
 
