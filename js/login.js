@@ -16,14 +16,27 @@ const today = new Date();
 const todayDate = document.getElementById("todayDate");
 todayDate.innerHTML = `${today.toDateString()}`;
 
-const todayTime = document.getElementById("todayTime");
-todayTime.innerHTML = `${today.getHours()} : ${today.getMinutes()} : ${today.getSeconds()}`;
 
-function tickingTime() {
-    const time = new Date();
-    time = time.toUTCString();
-    const activeTime = `${time.getHours()} : ${time.getMinutes()} : ${time.getSeconds()}`;
+function time() {
+    var refresh = location.reload(1000); // refresh every second
+    time = setTimeout('displayTime()', refresh)
+};
+
+function displayTime() {
+    document.getElementById("todayTime").innerHTML = today.toLocaleTimeString('en-US');
 }
+
+displayTime(); // calling function stopped the time from flashing every second
+
+
+
+
+
+
+// function tickingTime() {
+//     time = new Date();
+//     const activeTime = `${time.getHours()} : ${time.getMinutes()} : ${time.getSeconds()}`;
+// }
 
 // if (email === "admin@yopmail.com" && password === "adminyopmail") {
 
