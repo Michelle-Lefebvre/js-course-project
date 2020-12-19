@@ -1,0 +1,48 @@
+body {
+    color: #8b7daa;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    max-width: 370px;
+    margin: auto;
+    color: #65578f;
+    font-family: "Comic Sans MS", cursive;
+}
+
+form {
+    margin: 3rem;
+    padding: 2rem;
+    background: #eec8c2;
+    border-radius: 1rem;
+    border: 5px solid #65578f;
+}
+
+label {
+    margin: 1rem 0;
+    padding-top: 1rem;
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+button {
+    border-radius: 12px;
+    border: 1px solid #65578f 5px;
+    background-color: whitesmoke;
+    color: #65578f;
+    font-family: inherit;
+    font-size: 100%;
+    margin-bottom: 1rem;
+    padding: 3px;
+}
+
+button {
+    width: 95%;
+    margin: auto;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background-color: #65578f;
+    color: #eec8c2;
+}
