@@ -17,33 +17,30 @@ function checkInputs() {
     const emailValue = email.value.trim();
     const passwardValue = password.value.trim();
 
-    if (emailValue === '' || emailValue === null) {
-        // show error
-        //add error class
-
-    }
-
-
-    if (email === "admin@yopmail.com" && password === "adminyopmail") {
+    // validate email
+    if (emailValue === "admin@yopmail.com") {
         setSuccessFor(email);
-        setSuccessFor(password);
-    }
-    else if (emailValue === '' || emailValue === null || (!emailValue.includes("@")) || (!emailValue.includes("."))) {
-        setErrorFor(email, 'Email address must be filled in!');
-    }
-    else {
-        // show error
-        //add error class
-        setErrorFor(email, 'Email address must be filled in!');
     }
 
-    if (passwardValue.length >= 6) {
-        // show error
-        //add error class
-        setErrorFor(password, 'Password length must be at least 6 characters!')
+    if (emailValue === "" || emailValue === null) {
+        setErrorFor(email, 'Email address must be filled in!');
     } else {
+        setErrorFor(email, 'Part 2: Email should be: admin@yopmail.com');
+    }
+
+    // password
+    if (passwardValue === "adminyopmail") {
         setSuccessFor(password);
     }
+
+    if (passwardValue === '' || passwardValue === null) {
+        setErrorFor(password, 'Password must be filled in!');
+    } else if (passwardValue.length < 6) {
+        setErrorFor(password, 'Password length must be at least 6 characters!');
+    } else {
+        setErrorFor(password, 'Password must be: adminyopmail');
+    }
+
 
 }
 
@@ -76,7 +73,7 @@ const today = new Date();
 const todayDate = document.getElementById("todayDate");
 todayDate.innerHTML = `${today.toDateString()}`;
 
-/** Reference NOTE: to get the time displaying moving seconds without reloading the entire page every second I found this and formatted it
+/** Reference NOTE: to get the time displaying moving seconds without reloading the entire page every second I found this then formatted it with .toLocaleTimeString()
  https://www.plus2net.com/javascript_tutorial/clock-toggle.php 
  */
 function currentTime() {
