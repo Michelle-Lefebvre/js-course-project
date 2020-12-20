@@ -1,10 +1,70 @@
-// get user inputs and store in variables
-// const emailAddress = document.getElementById("e-mail");
-// const email = emailAddress.value;
+// reference video for form validation: https://www.youtube.com/watch?v=rsd4FNGTRBw
 
-// const pass = document.getElementById("pass");
-// const password = pass.value;
+const form = document.getElementById("form");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
 
+// form is submitted
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    checkInputs();
+});
+
+// validate user inputs
+function checkInputs() {
+    // get user values
+    const emailValue = email.value.trim();
+    const passwardValue = password.value.trim();
+
+    if (emailValue === '' || emailValue === null) {
+        // show error
+        //add error class
+
+    }
+
+
+    if (email === "admin@yopmail.com" && password === "adminyopmail") {
+        setSuccessFor(email);
+        setSuccessFor(password);
+    }
+    else if (emailValue === '' || emailValue === null || (!emailValue.includes("@")) || (!emailValue.includes("."))) {
+        setErrorFor(email, 'Email address must be filled in!');
+    }
+    else {
+        // show error
+        //add error class
+        setErrorFor(email, 'Email address must be filled in!');
+    }
+
+    if (passwardValue.length >= 6) {
+        // show error
+        //add error class
+        setErrorFor(password, 'Password length must be at least 6 characters!')
+    } else {
+        setSuccessFor(password);
+    }
+
+}
+
+function setErrorFor(input, message) {
+    const formItem = input.parentElement;
+    const small = formItem.querySelector('small');
+    const errors = document.getElementById("errors")
+    // display error message
+    small.innerText = message;
+
+    // add error class
+    formItem.className = 'form-item error';
+    errors.textContent = "Error! Please complete the form!";
+}
+
+function setSuccessFor() {
+    const formItem = input.parentElement;
+    formItem.className = 'form-item success';
+}
+
+// ****************   Message  Date  Time  ******************** /
 // display message
 const todayMsg = document.getElementById("todayMsg");
 const message = todayMsg.textContent = "in init";
@@ -29,17 +89,3 @@ function displayTime() {
     document.getElementById("todayTime").innerHTML = today;
     const displaySeconds = currentTime();
 }
-
-
-
-
-
-// function tickingTime() {
-//     time = new Date();
-//     const activeTime = `${time.getHours()} : ${time.getMinutes()} : ${time.getSeconds()}`;
-// }
-
-// if (email === "admin@yopmail.com" && password === "adminyopmail") {
-
-// }
-

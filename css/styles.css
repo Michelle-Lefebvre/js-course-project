@@ -1,49 +1,98 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    color: #8b7daa;
-    background-color: whitesmoke;
+    /* background-color: whitesmoke; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
-    flex-direction: row;
-    min-width: 370px;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgb(0, 0, 0, 0.4);
+    width: 400px;
     max-width: 100%;
-    margin: auto;
-    color: #65578f;
-    font-family: "Comic Sans MS", cursive;
+    overflow: hidden;
 }
 
-main {
-    margin: 3rem;
-    padding: 2rem;
-    background: #eec8c2;
-    border-radius: 1rem;
-    border: 5px solid #65578f;
-}
-
-label {
-    margin: .5rem 0;
-    padding-top: 1rem;
-}
-
-input[type=text],
-input[type=email],
-input[type=password],
-button {
-    border-radius: 12px;
-    border: 1px solid #65578f 5px;
+.header {
     background-color: whitesmoke;
-    color: #65578f;
+    border-bottom: 1ps solid #f0f0f0;
+    padding: 20px 40px;
+}
+
+.header h2 {
+    margin: 0;
+}
+
+.form {
+    padding: 30px 40px;
+}
+
+.form-item {
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.form-item label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.form-item input {
+    border: 2px solid #f0f0f0;
+    border-radius: 5px;
+    display: block;
+    padding: 10px;
     font-family: inherit;
-    font-size: 100%;
-    margin-bottom: 1rem;
-    padding: 3px;
+    font-size: 14px;
+    width: 100%
+}
+
+.form-item.success input {
+    border-color: #2ecc71;
+}
+
+.form-item.error input {
+    border-color: red;
+}
+
+.form-item small {
+    visibility: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.form-item.error small {
+    color: red;
+    visibility: visible;
 }
 
 button {
-    width: 95%;
-    margin: auto;
-    margin-top: 1rem;
+    background-color: #8e44ad;
+    border: 2px solid #8e44ad;
+    border-radius: 5px;
+    color: white;
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
 }
 
 button:hover {
-    background-color: #65578f;
-    color: #eec8c2;
+    background-color: white;
+    color: #8e44ad;
+    font-weight: bold;
+}
+
+#errors {
+    color: red;
 }
