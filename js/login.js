@@ -38,10 +38,6 @@ function checkInputs() {
     } else {
         setErrorFor(password, 'Part 2: Password must be: adminyopmail');
     }
-
-    if ((emailValue === "admin@yopmail.com") && (passwardValue === "adminyopmail")) {
-        getWeather();
-    }
 }
 
 function setErrorFor(input, message) {
@@ -93,14 +89,63 @@ function getWeather() {
 
 // using jQuery what to do with the api
 function reqListener(data) {
-    const showWeather = document.getElementById('weather');
-    // showWeather.textContent = `Headline: ${data.Headline}`;
+    // const showWeather = document.getElementById('weather');
+    // showWeather.innerHTML = ""; 
 
-    showWeather.textContent = Object.keys(showWeather);
-    //   
-    // showName.textContent = data.keys(data.keys(Headline));
-    // console.log(data.name);
+    const container = $("#weather")[0];
+    container.style.color = "white";
+    container.innerHTML = "";
+
+    function appendData(data) {
+        var mainContainer = document.getElementById("weather");
+        for (var i = 0; i < data.length; i++) {
+            var div = document.createElement("div");
+            div.innerHTML = 'Date: ' + data[i].date + ' ' + data[i].lastName;
+            mainContainer.appendChild(div);
+        }
+    }
+
+    for (const [key, value] of Object.entries(data)) {
+        const dateWeather = document.getElementById('weatherDate');
+        const maxWeather = document.getElementById('weatherMax');
+        const minWeather = document.getElementById('weatherMin');
+        const dayWeather = document.getElementById('weatherDay');
+        const nightWeather = document.getElementById('weatherNight');
+
+        dateWeather.textContent = `${key}: ${value}`;
+        maxWeather.textContent = `${key}: ${value}`;
+        minWeather.textContent = `${key}: ${value}`;
+        dayWeather.textContent = `${key}: ${value}`;
+        nightWeather.textContent = `${key}: ${value}`;
+    }
+
+
+
+    /*
+        const dateWeather = document.getElementById('weatherDate');
+        const maxWeather = document.getElementById('weatherMax');
+        const minWeather = document.getElementById('weatherMin');
+        const dayWeather = document.getElementById('weatherDay');
+        const nightWeather = document.getElementById('weatherNight');
+    
+        showWeather.textContent = Object.keys(data.DailyForecasts);
+        // DailyForecasts / Date 
+        dateWeather.innerText = data.DailyForecasts.Date;
+        // DailyForecasts / Temperature / Maximum
+        maxWeather.innerText = data.DailyForecasts.Temperature.Maximum.Value;
+        // DailyForecasts / Temperature / Minimum
+        minWeather.innerText = data.DailyForecasts.Temperature.Minimum.Value;
+        // DailyForecasts / Day / PrecipitationType
+        dayWeather.innerText = data.DailyForecasts.Day.PrecipitationType;
+        // DailyForecasts / Night / PrecipitationType
+        nightWeather.innerText = data.DailyForecasts.Night.PrecipitationType;
+    
+        // showWeather.textContent = Object.keys(showWeather);
+        //   
+        // showName.textContent = data.keys(data.keys(Headline));
+    */
 }
+
 // api failed
 function noWeather() {
     const showWeather = $("#weather")[0];
