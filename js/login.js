@@ -17,30 +17,26 @@ function checkInputs() {
     const emailValue = email.value.trim();
     const passwardValue = password.value.trim();
 
+
     // validate email
     if (emailValue === "admin@yopmail.com") {
         setSuccessFor(email);
-    }
-
-    if (emailValue === "" || emailValue === null) {
+    } else if (emailValue === "" || emailValue === null) {
         setErrorFor(email, 'Email address must be filled in!');
     } else {
-        setErrorFor(email, 'Part 2: Email should be: admin@yopmail.com');
+        setErrorFor(email, 'Part 2: Email must be: admin@yopmail.com');
     }
 
     // password
     if (passwardValue === "adminyopmail") {
         setSuccessFor(password);
-    }
-
-    if (passwardValue === '' || passwardValue === null) {
+    } else if (passwardValue === '' || passwardValue === null) {
         setErrorFor(password, 'Password must be filled in!');
     } else if (passwardValue.length < 6) {
         setErrorFor(password, 'Password length must be at least 6 characters!');
     } else {
-        setErrorFor(password, 'Password must be: adminyopmail');
+        setErrorFor(password, 'Part 2: Password must be: adminyopmail');
     }
-
 
 }
 
@@ -53,10 +49,9 @@ function setErrorFor(input, message) {
 
     // add error class
     formItem.className = 'form-item error';
-    errors.textContent = "Error! Please complete the form!";
 }
 
-function setSuccessFor() {
+function setSuccessFor(input) {
     const formItem = input.parentElement;
     formItem.className = 'form-item success';
 }
