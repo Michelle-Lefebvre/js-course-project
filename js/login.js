@@ -1,5 +1,5 @@
+// ****************   FORM  ******************** /
 // reference video for form validation: https://www.youtube.com/watch?v=rsd4FNGTRBw
-
 const form = document.getElementById("form");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
@@ -9,6 +9,7 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     checkInputs();
+
 });
 
 // validate user inputs
@@ -38,6 +39,9 @@ function checkInputs() {
         setErrorFor(password, 'Part 2: Password must be: adminyopmail');
     }
 
+    if ((emailValue === "admin@yopmail.com") && (passwardValue === "adminyopmail")) {
+        getWeather();
+    }
 }
 
 function setErrorFor(input, message) {
@@ -80,4 +84,25 @@ function displayTime() {
     const today = new Date().toLocaleTimeString('en-US');
     document.getElementById("todayTime").innerHTML = today;
     const displaySeconds = currentTime();
+}
+
+// when email and password match give call to weather API using jQuery
+function getWeather() {
+    $.ajax(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/56186?apikey=9iHAYolfpIZFCHqIL7BaOaFBQ2ddua08&metric=true`).done(reqListener).fail(noWeather);
+}
+
+// using jQuery what to do with the api
+function reqListener(data) {
+    const showWeather = document.getElementById('weather');
+    // showWeather.textContent = `Headline: ${data.Headline}`;
+
+    showWeather.textContent = Object.keys(showWeather);
+    //   
+    // showName.textContent = data.keys(data.keys(Headline));
+    // console.log(data.name);
+}
+// api failed
+function noWeather() {
+    const showWeather = $("#weather")[0];
+    showWeather.textContent = "Something went wrong...Can not find the weather."
 }

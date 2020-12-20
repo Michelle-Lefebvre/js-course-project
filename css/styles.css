@@ -2,6 +2,13 @@
     box-sizing: border-box;
 }
 
+:root {
+    --light-color: #f0f0f0;
+    --dark-color: #8e44ad;
+    --green-color: #2ecc71;
+    --red-color: red;
+}
+
 body {
     /* background-color: whitesmoke; */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,17 +21,36 @@ body {
 }
 
 .container {
-    background-color: #fff;
+    display: flex;
+    width: 80%;
+    max-width: 100%;
+    min-height: 100%;
+    margin: auto;
     border-radius: 8px;
     box-shadow: 0 3px 6px rgb(0, 0, 0, 0.4);
-    width: 400px;
-    max-width: 100%;
+
     overflow: hidden;
 }
 
+.left {
+    background-color: #fff;
+    flex: 1;
+    width: 50%;
+    max-width: 100%;
+}
+
+.right {
+    background-color: var(--dark-color);
+    color: #fff;
+    padding: 20px 40px;
+    width: 50%;
+    max-width: 100%;
+    opacity: 70%;
+}
+
 .header {
-    background-color: whitesmoke;
-    border-bottom: 1ps solid #f0f0f0;
+    background-color: var(--light-color);
+    border-bottom: 1ps solid var(--light-color);
     padding: 20px 40px;
 }
 
@@ -48,7 +74,7 @@ body {
 }
 
 .form-item input {
-    border: 2px solid #f0f0f0;
+    border: 2px solid var(--light-color);
     border-radius: 5px;
     display: block;
     padding: 10px;
@@ -58,11 +84,11 @@ body {
 }
 
 .form-item.success input {
-    border-color: #2ecc71;
+    border-color: var(--green-color);
 }
 
 .form-item.error input {
-    border-color: red;
+    border-color: var(--red-color);
 }
 
 .form-item small {
@@ -73,26 +99,30 @@ body {
 }
 
 .form-item.error small {
-    color: red;
+    color: var(--red-color);
     visibility: visible;
 }
 
 button {
-    background-color: #8e44ad;
+    background-color: var(--dark-color);
     border: 2px solid #8e44ad;
     border-radius: 5px;
     color: white;
     width: 100%;
     font-size: 14px;
     padding: 10px;
+    transition: ease-in-out 1s;
 }
 
 button:hover {
     background-color: white;
-    color: #8e44ad;
+    border: 2px solid #8e44ad;
+    box-shadow: 0 3px 6px rgb(0, 0, 0, 0.2);
+    color: var(--dark-color);
     font-weight: bold;
+    transition: ease-in-out 1s;
 }
 
 #errors {
-    color: red;
+    color: var(--red-color);
 }
