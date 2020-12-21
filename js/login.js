@@ -7,16 +7,9 @@ const password = document.getElementById("password");
 // form is submitted
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    e.stopPropagation();
 
     checkInputs();
 
-    if (emailValue != "admin@yopmail.com" && !passwardValue != "adminyopmail") {
-        e.stopPropagation();
-
-    } else {
-        reqListener(data);
-    }
 });
 
 // validate user inputs
@@ -47,27 +40,26 @@ function checkInputs() {
     }
 
     if (emailValue === "admin@yopmail.com" && passwardValue === "adminyopmail") {
-        reqListener(data);
+        getWeather();
     }
 }
 
+// display error messages for user input
 function setErrorFor(input, message) {
     const formItem = input.parentElement;
     const small = formItem.querySelector('small');
-    const errors = document.getElementById("errors")
+    let errors = document.getElementById("errors")
     // display error message
     small.innerText = message;
-    errors = textContent = "Error! Pllease complete the form!";
+    errors.textContent = "Error! Please complete the form!";
     // add error class
     formItem.className = 'form-item error';
 }
-
+// user input is correct
 function setSuccessFor(input) {
     const formItem = input.parentElement;
     formItem.className = 'form-item success';
 }
-
-// to prevent api call until email & password match
 
 // ****************   Message  Date  Time  ******************** /
 // display message
@@ -94,13 +86,7 @@ function displayTime() {
     document.getElementById("todayTime").innerHTML = today;
     const displaySeconds = currentTime();
 }
-// WAIT FOR PASSWORD & EMAIL TO MATCH THEN EXECUTE
-function func1(event) {
-    alert("DIV 1");
-    if (document.getElementById("check").checked) {
-        event.stopPropagation();
-    }
-}
+
 // when email and password match give call to weather API using jQuery
 function getWeather() {
     $.ajax(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/56186?apikey=9iHAYolfpIZFCHqIL7BaOaFBQ2ddua08&metric=true`).done(reqListener).fail(noWeather);
@@ -127,6 +113,7 @@ function reqListener(data) {
     for (let i = 0; i < data.DailyForecasts.length; i++) {
         dateWeather.innerText = data.DailyForecasts[i].Date;
     }
+
 
     // DailyForecasts / Temperature / Maximum
     for (let i = 0; i < data.DailyForecasts.length; i++) {

@@ -26,26 +26,26 @@
                     <input type="password" id="password">
                     <small></small>
                 </div>
-                <button onclick="getWeather()">Login</button>
+                <button>Login</button>
             </form>
 
             <div class="header">
+                <div id="errors"></div>
                 <p>Today's message: <strong id="todayMsg"></strong></p>
                 <p>Today's date: <strong id="todayDate"></strong></p>
                 <p>Time now: <strong id="todayTime"></strong></p>
-
-                <div id="errors"></div>
             </div>
         </div>
 
         <div class="right">
-
             <h3>Weather in Montreal for the next 5 days!</h3>
             <div id="weather"></div>
             <div class="day">
                 <p>Date: <strong id="weatherDate"></strong></p>
+
                 <p>Max: <strong id="weatherMax"></strong>
                     Min: <strong id="weatherMin"></strong></p>
+
                 <p>Day: <strong id="weatherDay"></strong>
                     Night: <strong id="weatherNight"></strong></p>
             </div>
