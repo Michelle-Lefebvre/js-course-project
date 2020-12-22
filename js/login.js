@@ -9,7 +9,6 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     checkInputs();
-
 });
 
 // validate user inputs
@@ -17,7 +16,6 @@ function checkInputs() {
     // get user values
     const emailValue = email.value.trim();
     const passwardValue = password.value.trim();
-
 
     // validate email
     if (emailValue === "admin@yopmail.com") {
@@ -39,6 +37,7 @@ function checkInputs() {
         setErrorFor(password, 'Part 2: Password must be: adminyopmail');
     }
 
+    // when both email & password match call API
     if (emailValue === "admin@yopmail.com" && passwardValue === "adminyopmail") {
         getWeather();
     }
@@ -64,7 +63,8 @@ function setSuccessFor(input) {
 // ****************   Message  Date  Time  ******************** /
 // display message
 const todayMsg = document.getElementById("todayMsg");
-const message = todayMsg.textContent = "in init";
+const message = todayMsg.textContent = '"in init"';
+todayMsg.style.color = "#2ecc71";
 
 // get today's date & store in variable
 const today = new Date();
@@ -78,7 +78,7 @@ todayDate.innerHTML = `${today.toDateString()}`;
  */
 function currentTime() {
     var refresh = 1000; // refresh every second
-    time = setTimeout('displayTime()', refresh)
+    time = setTimeout('displayTime()', refresh);
 };
 
 function displayTime() {
@@ -87,6 +87,7 @@ function displayTime() {
     const displaySeconds = currentTime();
 }
 
+// ****************   API CALL    ******************** /
 // when email and password match give call to weather API using jQuery
 function getWeather() {
     $.ajax(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/56186?apikey=9iHAYolfpIZFCHqIL7BaOaFBQ2ddua08&metric=true`).done(reqListener).fail(noWeather);
@@ -94,44 +95,25 @@ function getWeather() {
 
 // using jQuery what to do with the api
 function reqListener(data) {
+    // clear error message
+    let errors = document.getElementById("errors");
+    errors.textContent = "";
+
     const showWeather = document.getElementById('weather');
     showWeather.innerHTML = "";
 
-    const container = $("#weather")[0];
-    container.style.color = "white";
-    container.innerHTML = "";
+    const dateWeather = document.querySelector('.weatherDate');
+    const maxWeather = document.querySelector('.weatherMax');
+    const minWeather = document.querySelector('.weatherMin');
+    const dayWeather = document.querySelector('.weatherDay');
+    const nightWeather = document.querySelector('.weatherNight');
 
-
-    const dateWeather = document.getElementById('weatherDate');
-    const maxWeather = document.getElementById('weatherMax');
-    const minWeather = document.getElementById('weatherMin');
-    const dayWeather = document.getElementById('weatherDay');
-    const nightWeather = document.getElementById('weatherNight');
-
-    // showWeather.textContent = Object.keys(data.DailyForecasts);
     // DailyForecasts / Date 
     for (let i = 0; i < data.DailyForecasts.length; i++) {
         dateWeather.innerText = data.DailyForecasts[i].Date;
-    }
-
-
-    // DailyForecasts / Temperature / Maximum
-    for (let i = 0; i < data.DailyForecasts.length; i++) {
-        maxWeather.innerText = data.DailyForecasts[i].Temperature.Maximum.Value + "C";
-    }
-
-    // DailyForecasts / Temperature / Minimum
-    for (let i = 0; i < data.DailyForecasts.length; i++) {
-        minWeather.innerText = data.DailyForecasts[i].Temperature.Minimum.Value + "C";
-    }
-
-    // DailyForecasts / Day / PrecipitationType
-    for (let i = 0; i < data.DailyForecasts.length; i++) {
+        maxWeather.innerText = `${data.DailyForecasts[i].Temperature.Maximum.Value}C`;
+        minWeather.innerText = `${data.DailyForecasts[i].Temperature.Minimum.Value}C`;
         dayWeather.innerText = data.DailyForecasts[i].Day.PrecipitationType;
-    }
-
-    // DailyForecasts / Night / PrecipitationType
-    for (let i = 0; i < data.DailyForecasts.length; i++) {
         nightWeather.innerText = data.DailyForecasts[i].Night.PrecipitationType;
     }
 }
@@ -139,5 +121,5 @@ function reqListener(data) {
 // api failed
 function noWeather() {
     const showWeather = $("#weather")[0];
-    showWeather.textContent = "Something went wrong...Can not find the weather."
+    showWeather.textContent = "Something went wrong...Can not find the weather.";
 }
